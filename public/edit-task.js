@@ -13,9 +13,9 @@ const showTask = async () => {
     const {
       data: { task },
     } = await axios.get(`/api/v1/tasks/${id}`)
-    const { _id: taskID, completed, name } = task
+    const { completed,_id, name } = task
 
-    taskIDDOM.textContent = taskID
+    taskIDDOM.textContent = _id
     taskNameDOM.value = name
     tempName = name
     if (completed) {
@@ -54,7 +54,7 @@ editFormDOM.addEventListener('submit', async (e) => {
     formAlertDOM.textContent = `success, edited task`
     formAlertDOM.classList.add('text-success')
   } catch (error) {
-    console.error(error)
+    console.error(_id)
     taskNameDOM.value = tempName
     formAlertDOM.style.display = 'block'
     formAlertDOM.innerHTML = `error, please try again`
